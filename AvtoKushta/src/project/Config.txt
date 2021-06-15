@@ -1,0 +1,2 @@
+jdbc:sqlserver://localhost\\SQLEXPRESS01;databaseName=AvtoKushta;integratedSecurity=true
+com.microsoft.sqlserver.jdbc.SQLServerDriver

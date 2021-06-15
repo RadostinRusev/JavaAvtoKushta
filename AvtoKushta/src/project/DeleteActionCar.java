@@ -1,0 +1,31 @@
+package project;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+public class DeleteActionCar implements ActionListener {
+	Frame frame = null;
+	DeleteActionCar(Frame frame){
+		this.frame = frame;
+		}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		frame.connection = DBconnect.getCon();
+		String sql = "Delete from koli where id=?";
+		try {
+			frame.state= frame.connection.prepareStatement(sql);
+			frame.state.setInt(1, frame.id);
+			frame.state.execute();
+			frame.carTable.setModel(DBconnect.getAllData("koli"));
+			frame.rentCarTable.setModel(DBconnect.getAllData("koli"));
+			frame.id=-1;
+	//		DBconnect.fillCombo(searchCombo);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+
+}
